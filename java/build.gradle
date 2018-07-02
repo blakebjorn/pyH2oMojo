@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+apply plugin: 'idea'
+group 'com.blakebjorn.pyH2oMojo'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'pyH2oMojo',
+                'Implementation-Version': version,
+                'Main-Class': 'com.blakebjorn.pyH2oMojo.pyH2oMojo'
+    }
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile name: 'h2o-genmodel'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+}

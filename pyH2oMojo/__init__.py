@@ -75,11 +75,10 @@ class H2oMojoPredictor(object):
 
         outputstring = json.dumps(output).encode("utf8")
 
-        st = time.time()
         if self.verbose:
             print(">>> " + outputstring.decode("utf8"))
         self.sock.sendto(outputstring, ("127.0.0.1", self.port))
-
+        st = time.time()
         while True:
             try:
                 line = self.queue.get_nowait()

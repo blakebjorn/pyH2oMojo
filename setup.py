@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyH2oMojo",
-    version="0.1.0",
+    version="0.1.1",
     author="Blake Anderson",
     author_email="blakebanders@gmail.com",
     description="H2O MOJO wrapper - allows predictions from python without the webserver overhead.",
